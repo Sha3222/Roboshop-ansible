@@ -1,0 +1,25 @@
+- name: roboshop-mongodb
+  hosts: all
+  become: true
+  tasks:
+    - name: copying mongodb repo file
+      ansible.builtin.copy:
+        src: mongo.Repo
+        dest: /etc/yum.repos.d/mongo.repo
+
+    - name: installing the mongodb
+      ansible.builtin.yum:
+        name: mongodb-org
+        state: present
+
+    - name: Replacing the IP
+      ansible.builtin.replace:
+        path: /etc/mongod.conf
+        regexp: '127.0.0.0'
+        replace: '0.0.0.0'
+
+    - name: start the mongodb service
+      ansible.builtin.systemd:
+        name: mongod
+        state: restarted
+        enabled: yes
