@@ -1,0 +1,48 @@
+- name: Redies
+  hosts: all
+  become: true
+  tasks:
+    - name: Installing Redies repo
+      ansible.builtin.yum:
+        name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+        state: present
+
+    - name: Enable redies module
+      ansible.builtin.shell: yum module enable redis:remi-6.2 -y
+
+    - name: Install Redies
+      ansible.builtin.yum:
+        name: redis
+        state: present
+
+    - name: replace redis.conf
+      ansible.builtin.replace:
+        path: /etc/redis.conf
+        regexp: '127.0.0.0'
+        replace: '0.0.0.0'
+
+    - name: replace in /etc/redis/redis.conf
+      ansible.builtin.replace:
+        path: /etc/redis/redis.conf
+        regexp: '127.0.0.0'
+        replace: '0.0.0.0'
+
+    - name: start the service
+      ansible.builtin.systemd:
+        name: redis
+        state: restarted
+        enabled: yes
+
+
+
+
+
+
+
+
+
+
+
+sed -i -e '/127.0.0.0/0.0.0.0' /etc/redis.conf  /etc/redis/redis.conf
+systemctl enable redis
+systemctl start redis

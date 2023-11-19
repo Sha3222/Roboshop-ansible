@@ -2,8 +2,7 @@
   hosts: all
   become: true
   vars:
-    component: catalogue
-    schema: true
+    component: cart
   tasks:
 
     - name: importing nodejs file
