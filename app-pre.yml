@@ -18,8 +18,7 @@
    dest: /tmp/'{{component}}'.zip
    remote_src: yes
 
-- name: Importing Systemd service
-  ansible.builtin.import_tasks: systemd.yml
+
 
 
 

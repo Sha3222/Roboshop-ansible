@@ -9,4 +9,4 @@
     state: present
 
 - name: Loading schema
-  ansible.builtin.shell: mongo --host mongodb-dev.sreddy.online </app/schema/'{{variable}}'.js
+  ansible.builtin.shell: mongo --host mongodb-dev.sreddy.online </app/schema/'{{component}}'.js

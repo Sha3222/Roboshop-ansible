@@ -1,5 +1,5 @@
 - name: Install Nodejs Repo
-  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>>${log}
+  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
 - name: Install Nodejs
   ansible.builtin.yum:
@@ -19,8 +19,9 @@
   when: schema is defined
 
 
-- name: import schema file
+- name: import systemd file
   ansible.builtin.import_tasks: systemd.yml
+
 
 
 

@@ -1,4 +1,4 @@
-- name: Roboshop-catalogue
+- name: Roboshop-cart
   hosts: all
   become: true
   vars:
