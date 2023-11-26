@@ -1,9 +1,0 @@
-- name: Roboshop-payment
-  hosts: all
-  become: true
-  vars:
-    component: payment
-  tasks:
-
-    - name: importing nodejs file
-      ansible.builtin.import_tasks: python.yml
